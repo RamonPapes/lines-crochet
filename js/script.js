@@ -16,8 +16,7 @@ for (let i = 0; i < qtdProdutos; i++) {
     botoesRemover[i].addEventListener('click', () => {
         let quantidades = document.getElementsByClassName('quantidade');
         let quantidade = parseInt(quantidades[i].textContent);
-        var precos = document.querySelectorAll('.card-body h4');
-        let preco = parseInt(precos[i].textContent);
+        let preco = parseFloat(document.getElementsByClassName('adicionar')[i].getAttribute('preco'));
         if (quantidade > 0) {
             quantidade--;
             quantidades[i].textContent = quantidade;
