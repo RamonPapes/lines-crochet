@@ -40,31 +40,62 @@ function atualizarTotalpreco() {
 }
 
 function emitirPedido() {
-    let pedidos = [];
+    let endereco = document.getElementById('inputEndereco').value;
+    let complemento = document.getElementById('inputComplemento').value;
+    if (endereco == "") {
+        alert('Antes de emitir seu pedido, por favor preencha o endereço');
+    } else {
+        let pedidos = [];
 
-    for (let i = 0; i < qtdProdutos; i++) {
-        let quantidade = parseInt(document.getElementsByClassName('quantidade')[i].textContent)
-        if (quantidade > 0) {
-            let pedido = {
-                nome: document.getElementsByClassName('card-title')[i].textContent,
-                quantidade: quantidade,
-                preco: parseFloat(document.getElementsByClassName('adicionar')[i].getAttribute('preco')),
+        for (let i = 0; i < qtdProdutos; i++) {
+            let quantidade = parseInt(document.getElementsByClassName('quantidade')[i].textContent)
+            if (quantidade > 0) {
+                let pedido = {
+                    nome: document.getElementsByClassName('card-title')[i].textContent,
+                    quantidade: quantidade,
+                    preco: parseFloat(document.getElementsByClassName('adicionar')[i].getAttribute('preco')),
+                }
+                pedidos.push(pedido);
             }
-            pedidos.push(pedido);
         }
+        let precoTotal = parseFloat(document.getElementById('total').textContent)
+
+        var mensagem = "Lista de pedidos:\n\n";
+
+        pedidos.forEach((pedido) => {
+            mensagem += "produto: " + pedido.nome + "\n" + "quantidade: " + pedido.quantidade + "\n" + "preço: " + pedido.preco + "\n\n";
+        })
+        mensagem += "preço total: " + precoTotal + "\nEndereço: " + endereco;
+        if (complemento != "") { mensagem += "\nComplemento: " + complemento }
+
+        let mensagemCodificada = encodeURIComponent(mensagem);
+
+        var linkWhatsApp = "https://wa.me/5571988242993?text=" + mensagemCodificada;
+
+        window.location.href = linkWhatsApp;
     }
-    let precoTotal = parseFloat(document.getElementById('total').textContent)
+}
 
-    var mensagem = "Lista de pedidos:\n\n";
+function enviarFormulario(event) {
+    event.preventDefault();
 
-    pedidos.forEach((pedido) => {
-        mensagem += "produto: " + pedido.nome + "\n" + "quantidade: " + pedido.quantidade + "\n" + "preço: " + pedido.preco + "\n\n"
-    })
-    mensagem += " preço total: " + precoTotal
+    let form = document.getElementById('contact-form');
+    let nome = form.querySelector('#nameForm').value;
+    let email = form.querySelector('#emailForm').value;
+    let mensagem = form.querySelector('#messageForm').value;
 
-    let mensagemCodificada = encodeURIComponent(mensagem);
+    console.log("Nome: " + nome);
+    console.log("Email: " + email);
+    console.log("Mensagem: " + mensagem);
 
-    var linkWhatsApp = "https://wa.me/5571988242993?text=" + mensagemCodificada;
+    if (nome != "" && email != "" && mensagem != "") {
+        let msgWpp = "Nome: " + nome + "\nEmail: " + email + "\nMensagem: " + mensagem;
 
-    window.location.href = linkWhatsApp;
+        let mensagemCodificada = encodeURIComponent(msgWpp);
+
+        var linkWhatsApp = "https://wa.me/5571988242993?text=" + mensagemCodificada;
+
+        window.location.href = linkWhatsApp;
+    }
+
 }

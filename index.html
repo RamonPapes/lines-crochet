@@ -137,6 +137,15 @@
                     </div>
                 </div>
             </div>
+            <div class="form-group">
+                <label for="inputAddress">Endereço</label>
+                <input type="text" class="form-control" id="inputEndereco" placeholder="Av Vinicius de Morais, 25"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="inputAddress2">Complemento</label>
+                <input type="text" class="form-control" id="inputComplemento" placeholder="Apartamento, casa, sítio...">
+            </div>
             <div class="total-preco">
                 <p>Total: <span id="total">0</span> reais</p>
                 <button class="btn btn-primary" id="emitirPedidoButton" onclick="emitirPedido()">Emitir Pedido</button>
@@ -150,35 +159,36 @@
             <div class="row">
                 <!--Grid column-->
                 <div class="col-md-8 mx-auto mb-md-0 mb-5">
-                    <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+                    <form id="contact-form" name="contact-form">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="md-form mb-0">
-                                    <input type="text" id="name" name="name" class="form-control">
-                                    <label for="name" class="">Your name</label>
+                                    <label for="name" class="">Seu nome</label>
+                                    <input required="required" type="text" id="nameForm" name="name"
+                                        class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="md-form mb-0">
-                                    <input type="text" id="email" name="email" class="form-control">
-                                    <label for="email" class="">Your email</label>
+                                    <label for="email" class="">Seu email</label>
+                                    <input required="required" type="text" id="emailForm" name="email"
+                                        class="form-control">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="md-form">
-                                    <textarea type="text" id="message" name="message" rows="2"
-                                        class="form-control md-textarea"></textarea>
                                     <label for="message">Sua mensagem </label>
+                                    <textarea required="required" type="text" id="messageForm" name="message" rows="2"
+                                        class="form-control md-textarea"></textarea>
                                 </div>
                             </div>
                         </div>
                     </form>
 
                     <div class="text-center text-md-left">
-                        <a class="btn btn-primary"
-                            onclick="document.getElementById('contact-form').submit();">Enviar</a>
+                        <button class="btn btn-primary" onclick="enviarFormulario(event);">Enviar</button>
                     </div>
                     <div class="status"></div>
                 </div>
