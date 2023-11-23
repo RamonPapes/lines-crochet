@@ -55,6 +55,10 @@ img:hover {
     margin-bottom: 1rem;
 }
 
+header nav{
+    background-color: #7F8FFE;
+}
+
 @media(min-width: 720px) {
     .principal {
         padding: 0 2.5rem;
