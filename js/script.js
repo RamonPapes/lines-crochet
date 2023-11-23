@@ -20,7 +20,7 @@ for (let i = 0; i < qtdProdutos; i++) {
         if (quantidade > 0) {
             quantidade--;
             quantidades[i].textContent = quantidade;
-            document.getElementById('total').textContent = parseInt(document.getElementById('total').textContent) - preco;
+            document.getElementById('total').textContent = parseFloat(document.getElementById('total').textContent) - preco;
         }
     });
 }
@@ -74,28 +74,4 @@ function emitirPedido() {
 
         window.location.href = linkWhatsApp;
     }
-}
-
-function enviarFormulario(event) {
-    event.preventDefault();
-
-    let form = document.getElementById('contact-form');
-    let nome = form.querySelector('#nameForm').value;
-    let email = form.querySelector('#emailForm').value;
-    let mensagem = form.querySelector('#messageForm').value;
-
-    console.log("Nome: " + nome);
-    console.log("Email: " + email);
-    console.log("Mensagem: " + mensagem);
-
-    if (nome != "" && email != "" && mensagem != "") {
-        let msgWpp = "Nome: " + nome + "\nEmail: " + email + "\nMensagem: " + mensagem;
-
-        let mensagemCodificada = encodeURIComponent(msgWpp);
-
-        var linkWhatsApp = "https://wa.me/5571988242993?text=" + mensagemCodificada;
-
-        window.location.href = linkWhatsApp;
-    }
-
 }
